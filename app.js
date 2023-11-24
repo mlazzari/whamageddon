@@ -13,7 +13,7 @@ async function updateData() {
 }
 
 async function fetchPlayers() {
-  const response = await fetch('https://your-heroku-app-url/players');
+  const response = await fetch('/players'); // Assuming the backend is hosted on the same domain
   const data = await response.json();
   return data;
 }
