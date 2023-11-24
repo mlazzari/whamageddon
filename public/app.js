@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   updateData();
+
+  document.getElementById("addUserForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const userName = document.getElementById("userNameInput").value;
+    addPlayer(userName);
+  });
 });
 
 async function updateData() {
@@ -13,17 +19,24 @@ async function updateData() {
 }
 
 async function fetchPlayers() {
-  const response = await fetch('/players'); // Assuming the backend is hosted on the same domain
+  const response = await fetch('/players');
   const data = await response.json();
   return data;
 }
 
-function updatePoints(players) {
-  const totalPoints = players.reduce((acc, player) => acc + player.points, 0);
-  document.getElementById("points").textContent = `Points: ${totalPoints}`;
-}
-
-function updateRanking(players) {
-  const rankingList = players.map((player, index) => `${index + 1}. ${player.name} - ${player.points} points`);
-  document.getElementById("ranking").innerHTML = `Ranking: <br>${rankingList.join("<br>")}`;
+async function addPlayer(userName) {
+  try {
+    const response = await fetch('/players', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: userName }),
+    });
+    const newPlayer = await response.json();
+    updateData();
+    console.log(`User ${newPlayer.name} added successfully!`);
+  } catch (error) {
+    console.error(error);
+  }
 }
