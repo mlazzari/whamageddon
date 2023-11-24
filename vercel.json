@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "public/index.html", "use": "@vercel/static" },
+    { "src": "public/**/*", "use": "@vercel/static" },
+    {
+      "src": "backend/**/*",
+      "use": "@vercel/node",
+      "config": { "maxLambdaSize": "50mb" }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/players", "dest": "backend/players.js" },
+    { "src": "/(.*)", "dest": "public/$1" }
+  ]
+}
