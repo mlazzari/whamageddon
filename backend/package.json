@@ -1,0 +1,17 @@
+{
+  "name": "whamageddon",
+  "version": "1.0.0",
+  "description": "Your Whamageddon web app backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.0",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
