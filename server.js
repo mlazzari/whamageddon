@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB (replace 'your-mongodb-uri' with your actual MongoDB connection string)
+// Connect to MongoDB Atlas (replace 'your-mongodb-uri' with your actual MongoDB Atlas connection string)
 mongoose.connect('your-mongodb-uri', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Define a simple Player model
