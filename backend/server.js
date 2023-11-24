@@ -29,9 +29,16 @@ app.get('/players', async (req, res) => {
 });
 
 // Add a new player
+// Update the POST endpoint for adding a new player
 app.post('/players', async (req, res) => {
   try {
     const { name } = req.body;
+    const existingPlayer = await Player.findOne({ name });
+    
+    if (existingPlayer) {
+      return res.status(400).json({ error: 'User with that name already exists' });
+    }
+
     const player = new Player({ name, points: 0 });
     await player.save();
     res.status(201).json(player);
@@ -40,6 +47,7 @@ app.post('/players', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
