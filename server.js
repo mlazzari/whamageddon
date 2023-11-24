@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB Atlas (replace 'your-mongodb-uri' with your actual MongoDB Atlas connection string)
-mongoose.connect('your-mongodb-uri', { useNewUrlParser: true, useUnifiedTopology: true });
+// Connect to MongoDB Atlas
+mongoose.connect('mongodb+srv://whamageddon:ixGl5N8pnqOt2xSZ@whamageddon.javuuc0.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Define a simple Player model
 const Player = mongoose.model('Player', {
